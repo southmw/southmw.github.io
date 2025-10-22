@@ -37,7 +37,7 @@ jobs:
         with:
           project-path: GithubIO\GithubIO.csproj
       - name: Setup Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@master
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
