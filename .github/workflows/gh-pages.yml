@@ -32,7 +32,7 @@ jobs:
         with:
           dotnet-version: 9.0.x
       - name: Prepare Blazor WASM for GitHub Pages
-        uses: southmw/southmw.github.io@v1
+        uses: na1307/blazor-github-pages@v4
         id: prepare
         with:
           project-path: GithubIO\GithubIO.csproj
