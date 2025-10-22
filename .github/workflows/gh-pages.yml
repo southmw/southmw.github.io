@@ -30,14 +30,21 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v5
         with:
-          dotnet-version: 9.0.x
-      - name: Prepare Blazor WASM for GitHub Pages
-        uses: southmw/southmw.github.io@master
+          dotnet-version: 8.0.x
+      - name: Restore dependencies
+        run: dotnet restore GithubIO/GithubIO.csproj
+      - name: Build
+        run: dotnet build GithubIO/GithubIO.csproj --configuration Release --no-restore
+      - name: Publish
+        run: dotnet publish GithubIO/GithubIO.csproj --configuration Release --no-build --output ./publish
+      - name: Prepare wwwroot
         id: prepare
-        with:
-          project-path: GithubIO\GithubIO.csproj
+        run: |
+          cp -r ./publish/wwwroot ./wwwroot
+          touch ./wwwroot/.nojekyll
+          echo "wwwroot-path=./wwwroot" >> $GITHUB_OUTPUT
       - name: Setup Pages
-        uses: actions/configure-pages@master
+        uses: actions/configure-pages@v4
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
