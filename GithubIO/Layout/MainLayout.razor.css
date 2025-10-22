@@ -21,6 +21,34 @@ main {
     align-items: center;
 }
 
+.content {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.site-footer {
+    margin-top: auto;
+    padding: 1rem 0;
+    border-top: 1px solid #e9ecef;
+    color: #6c757d;
+    font-size: .9rem;
+}
+
+.site-footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.site-footer .repo-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.site-footer .repo-link:hover {
+    text-decoration: underline;
+}
+
     .top-row ::deep a, .top-row ::deep .btn-link {
         white-space: nowrap;
         margin-left: 1.5rem;

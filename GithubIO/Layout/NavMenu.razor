@@ -1,16 +1,17 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
+﻿<div class="top-row ps-3 navbar navbar-dark" role="navigation" aria-label="Primary">
     <div class="container-fluid">
         <a class="navbar-brand" href="">Southmw</a>
-        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+        <button title="Navigation menu" class="navbar-toggler" aria-expanded="@(!collapseNavMenu)" aria-controls="primary-nav" @onclick="ToggleNavMenu">
             <span class="navbar-toggler-icon"></span>
         </button>
+        <button class="btn btn-sm btn-outline-light ms-2" title="Toggle theme" @onclick="ToggleTheme">🌓</button>
     </div>
 </div>
 
-<div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
-    <nav class="flex-column">
+<div class="@NavMenuCssClass nav-scrollable" id="primary-nav" @onclick="ToggleNavMenu">
+    <nav class="flex-column" role="menu">
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All" aria-current="page">
                 <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
             </NavLink>
         </div>
@@ -24,8 +25,25 @@
                 <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
             </NavLink>
         </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="about">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> About
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="blog">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Blog
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="projects">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Projects
+            </NavLink>
+        </div>
     </nav>
 </div>
+
+@inject IJSRuntime JS
 
 @code {
     private bool collapseNavMenu = true;
@@ -35,5 +53,10 @@
     private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
+    }
+
+    private async Task ToggleTheme()
+    {
+        await JS.InvokeVoidAsync("blazorToggleTheme");
     }
 }

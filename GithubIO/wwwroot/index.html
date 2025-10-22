@@ -13,6 +13,21 @@
     <link href="manifest.webmanifest" rel="manifest" />
     <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png" />
     <link rel="apple-touch-icon" sizes="192x192" href="icon-192.png" />
+    <script>
+        (function(){
+            const saved = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if ((saved === 'dark') || (!saved && prefersDark)) {
+                document.documentElement.dataset.theme = 'dark';
+            }
+            window.blazorToggleTheme = function(){
+                const root = document.documentElement;
+                const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+                root.dataset.theme = next;
+                try { localStorage.setItem('theme', next); } catch {}
+            }
+        })();
+    </script>
 </head>
 
 <body>

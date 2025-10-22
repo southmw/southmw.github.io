@@ -9,8 +9,15 @@
             <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
         </div>
 
-        <article class="content px-4">
+        <div class="container content px-4">
             @Body
-        </article>
+        </div>
+
+        <footer class="site-footer px-4">
+            <div class="container">
+                <span>© @DateTime.Now.Year Southmw · Built with Blazor WASM</span>
+                <a class="repo-link" href="https://github.com/southmw/southmw.github.io" target="_blank" rel="noopener">GitHub</a>
+            </div>
+        </footer>
     </main>
 </div>
